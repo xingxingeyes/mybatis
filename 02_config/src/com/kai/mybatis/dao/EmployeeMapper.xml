@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kai.mybatis.dao.EmployeeMapper">
+    <!--
+        namespace:名称空间 指定为接口的全类名
+        id:唯一标识
+        resultType:返回值类型
+        #{id}:从传递过来的参数中取出id值
+        databaseId="mysql" 表示在MySQL环境下执行sql
+        databaseId="oracle" 表示在Oracle环境下执行sql
+    -->
+    <select id="getEmpById" resultType="emp" databaseId="mysql">
+        select * from tbl_employee where id = #{id}
+    </select>
+    <select id="getEmpById" resultType="emp" databaseId="oracle">
+        select id, last_name lastName, email  from tbl_employee where id = #{id}
+    </select>
+</mapper>
