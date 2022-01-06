@@ -12,6 +12,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @description: 根据XML配置文件（全局配置文件）创建一个SqlSessonFaction对象
@@ -141,8 +143,14 @@ public class MyBatisTest {
 
         try {
             EmployeeMapper mapper = openSession.getMapper(EmployeeMapper.class);
-            Employee jerry = mapper.getEmpByIdAndName(6, "jerry");
-            System.out.println(jerry);
+            // Employee jerry = mapper.getEmpByIdAndName(6, "jerry");
+            // System.out.println(jerry);
+            Map<String, Object> map = new HashMap<>();
+            map.put("id",1);
+            map.put("lastName", "tom");
+            map.put("tableName", "tbl_employee");
+            Employee empByMap = mapper.getEmpByMap(map);
+            System.out.println(empByMap);
             openSession.commit();
         } finally {
             openSession.close();

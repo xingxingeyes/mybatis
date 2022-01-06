@@ -17,10 +17,16 @@
         where id = #{id}
     </select>
 
+    <select id="getEmpByMap" resultType="emp" databaseId="mysql">
+        select *
+        from ${tableName}
+        where id = ${id} and last_name=#{lastName}
+    </select>
+
     <select id="getEmpByIdAndName" resultType="emp" databaseId="mysql">
         select *
         from tbl_employee
-        where id = #{id} and last_name=#{lastName}
+        where id = #{id} and last_name=#{param2}
     </select>
 
 
