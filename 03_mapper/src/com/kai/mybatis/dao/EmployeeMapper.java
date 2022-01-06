@@ -4,7 +4,7 @@ import com.kai.mybatis.bean.Employee;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * @description:
+ * @description:描述
  * @author: kai.lv
  * @date: 2021/12/12
  **/
