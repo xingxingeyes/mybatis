@@ -113,4 +113,9 @@ ${}：可以获取map中的值或者pojo对象属性的值：
     jdbcType通常需要在某种特定的条件下被设置：
         在我们数据为null的时候，有些数据库可能不能识别mybatis对null的默认处理。比如Oracle(报错);
 
-        JdbcType OTHER：无效类型：因为mybatis对所有的null
+        JdbcType OTHER：无效类型：因为mybatis对所有的null都映射的是原生Jdbc的OTHER的类型，orcal不能真确处理;
+
+        由于全局配置中：jdbcTypeForNull=OTHER:orcal不支持；
+        1、#{email,jdbcType=OTHER};
+        2、jdbcTypeForNull=NULL
+                    <setting name="jdbcTypeForNull" value="NULL"/>

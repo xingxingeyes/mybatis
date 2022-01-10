@@ -11,6 +11,28 @@
         databaseId="mysql" 表示在MySQL环境下执行sql
         databaseId="oracle" 表示在Oracle环境下执行sql
     -->
+
+
+
+    <select id="getEmpByLastNameLikeReturnMap" resultType="emp">
+        select *
+        from tbl_employee
+        where last_name like #{lastName}
+    </select>
+
+    <select id="getEmpByIdReturnMap" resultType="map">
+        select *
+        from tbl_employee
+        where id = #{id}
+    </select>
+
+    <!-- resultType:如果返回的是一个集合，要写几个中元素的类型 -->
+    <select id="getEmpsByLastNameLike" resultType="emp" databaseId="mysql">
+        select *
+        from tbl_employee
+        where last_name like #{lastName}
+    </select>
+
     <select id="getEmpById" resultType="emp" databaseId="mysql">
         select *
         from tbl_employee
@@ -20,13 +42,15 @@
     <select id="getEmpByMap" resultType="emp" databaseId="mysql">
         select *
         from ${tableName}
-        where id = ${id} and last_name=#{lastName}
+        where id = ${id}
+          and last_name = #{lastName}
     </select>
 
     <select id="getEmpByIdAndName" resultType="emp" databaseId="mysql">
         select *
         from tbl_employee
-        where id = #{id} and last_name=#{param2}
+        where id = #{id}
+          and last_name = #{param2}
     </select>
 
 

@@ -1,9 +1,12 @@
 package com.kai.mybatis.test;
 
 
+import com.kai.mybatis.bean.Department;
 import com.kai.mybatis.bean.Employee;
+import com.kai.mybatis.dao.DepartmentMapper;
 import com.kai.mybatis.dao.EmployeeMapper;
 import com.kai.mybatis.dao.EmployeeMapperAnnotation;
+import com.kai.mybatis.dao.EmployeeMapperPlus;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,6 +16,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -145,12 +149,51 @@ public class MyBatisTest {
             EmployeeMapper mapper = openSession.getMapper(EmployeeMapper.class);
             // Employee jerry = mapper.getEmpByIdAndName(6, "jerry");
             // System.out.println(jerry);
-            Map<String, Object> map = new HashMap<>();
-            map.put("id",1);
-            map.put("lastName", "tom");
-            map.put("tableName", "tbl_employee");
-            Employee empByMap = mapper.getEmpByMap(map);
-            System.out.println(empByMap);
+            // Map<String, Object> map = new HashMap<>();
+            // map.put("id",1);
+            // map.put("lastName", "tom");
+            // map.put("tableName", "tbl_employee");
+            // Employee empByMap = mapper.getEmpByMap(map);
+            // System.out.println(empByMap);
+
+            // List<Employee> emps = mapper.getEmpsByLastNameLike("%e%");
+            // for (Employee emp: emps) {
+            //     System.out.println(emp);
+            // }
+
+            // Map<String, Object> map = mapper.getEmpByIdReturnMap(1);
+            // System.out.println(map);
+
+            // Map<String, Employee> maps = mapper.getEmpByLastNameLikeReturnMap("%r%");
+            // System.out.println(maps);
+
+            openSession.commit();
+        } finally {
+            openSession.close();
+        }
+    }
+
+    @Test
+    public void test05() throws IOException {
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession openSession = sqlSessionFactory.openSession();
+        try {
+            EmployeeMapperPlus mapper = openSession.getMapper(EmployeeMapperPlus.class);
+            // Employee emp = mapper.getEmpById(1);
+            // System.out.println(emp);
+
+            // Employee empAndDept = mapper.getEmpAndDept(1);
+            // System.out.println(empAndDept);
+            // System.out.println(empAndDept.getDept());
+
+            // Employee empByIdStep = mapper.getEmpByIdStep(1);
+            // System.out.println(empByIdStep);
+            // System.out.println(empByIdStep.getDept());
+            //
+            Employee empByIdStep = mapper.getEmpByIdStep(6);
+            System.out.println(empByIdStep);
+            System.out.println(empByIdStep.getDept());
+
             openSession.commit();
         } finally {
             openSession.close();
@@ -158,6 +201,24 @@ public class MyBatisTest {
     }
 
 
+    @Test
+    public void test06() throws IOException {
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession openSession = sqlSessionFactory.openSession();
+        try {
+            DepartmentMapper mapper = openSession.getMapper(DepartmentMapper.class);
+            // Department dept = mapper.getDepByIdPlus(3);
+            // System.out.println(dept);
+            // System.out.println(dept.getEmps());
+
+            Department deptByIdStep = mapper.getDeptByIdStep(3);
+            System.out.println(deptByIdStep.getDepartmentName());
+            // System.out.println(deptByIdStep.getEmps());
+            openSession.commit();
+        } finally {
+            openSession.close();
+        }
+    }
 
 
 }
