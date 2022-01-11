@@ -3,10 +3,7 @@ package com.kai.mybatis.test;
 
 import com.kai.mybatis.bean.Department;
 import com.kai.mybatis.bean.Employee;
-import com.kai.mybatis.dao.DepartmentMapper;
-import com.kai.mybatis.dao.EmployeeMapper;
-import com.kai.mybatis.dao.EmployeeMapperAnnotation;
-import com.kai.mybatis.dao.EmployeeMapperPlus;
+import com.kai.mybatis.dao.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -219,6 +216,30 @@ public class MyBatisTest {
             openSession.close();
         }
     }
+
+    @Test
+    public void testDynamicSql() throws IOException {
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession openSession = sqlSessionFactory.openSession();
+
+        try {
+            EmployeeMapperDynamicSQL mapper = openSession.getMapper(EmployeeMapperDynamicSQL.class);
+            Employee employee = new Employee(6, "%e%", "jerry@kai.com", null);
+            List<Employee> emps = mapper.getEmpsByConditionIf(employee);
+            for (Employee emp : emps) {
+                System.out.println(emp);
+            }
+            openSession.commit();
+        } finally {
+            openSession.close();
+        }
+
+
+    }
+
+
+
+
 
 
 }
