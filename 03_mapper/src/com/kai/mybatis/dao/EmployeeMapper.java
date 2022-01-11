@@ -12,6 +12,8 @@ import java.util.Map;
  **/
 public interface EmployeeMapper {
 
+    public Employee getEmpByMap(Map<String, Object> map);
+
     public Employee getEmpById(Integer id);
 
     public Employee getEmpByMap(Map<String,Object> map);
