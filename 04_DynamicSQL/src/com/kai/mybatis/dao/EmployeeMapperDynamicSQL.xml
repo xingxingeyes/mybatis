@@ -6,27 +6,29 @@
 
     <select id="getEmpsByConditionIf" resultType="com.kai.mybatis.bean.Employee">
         select * from tbl_employee
-        where
-        <!-- test, 判断表达式（OGNL)
-        OGNL参照ppt或者官方文档
+        <!-- where -->
+        <where>
+            <!-- test, 判断表达式（OGNL)
+            OGNL参照ppt或者官方文档
 
-        遇见特殊符号应该去写转义字符：
-        &&：&amp;
-        "":&quot;
-         -->
-        <if test="id!=null">
-            id=#{id}
-        </if>
-        <if test="lastName!=null &amp;&amp; lastName!=&quot;&quot;">
-            and last_name like #{lastName}
-        </if>
-        <if test="email!=null and email.trim()!=&quot;&quot;">
-            and email = #{email}
-        </if>
-        <!-- ognl会进行字符串与数字的转换判断 "0"==0-->
-        <if test="gender==0 or gender==1">
-            and gender=#{gender}
-        </if>
+            遇见特殊符号应该去写转义字符：
+            &&：&amp;
+            "":&quot;
+             -->
+            <if test="id!=null">
+                id=#{id}
+            </if>
+            <if test="lastName!=null &amp;&amp; lastName!=&quot;&quot;">
+                and last_name like #{lastName}
+            </if>
+            <if test="email!=null and email.trim()!=&quot;&quot;">
+                and email = #{email}
+            </if>
+            <!-- ognl会进行字符串与数字的转换判断 "0"==0-->
+            <if test="gender==0 or gender==1">
+                and gender=#{gender}
+            </if>
+        </where>
     </select>
 
 
