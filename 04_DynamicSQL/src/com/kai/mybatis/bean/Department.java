@@ -13,6 +13,14 @@ public class Department {
     private String departmentName;
     private List<Employee> emps;
 
+    public Department() {
+    }
+
+    public Department(Integer id, String departmentName) {
+        this.id = id;
+        this.departmentName = departmentName;
+    }
+
     public Integer getId() {
         return id;
     }
