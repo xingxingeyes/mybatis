@@ -5,6 +5,9 @@
 <mapper namespace="com.kai.mybatis.dao.DepartmentMapper">
     <!--<cache></cache>-->
 
+    <!-- 引用缓存：namespace:指定和哪个名称空间下的缓存一样-->
+    <cache-ref namespace="com.kai.mybatis.dao.EmployeeMapper"/>
+
     <select id="getDeptById" resultType="com.kai.mybatis.bean.Department">
         select id, dept_name departmentName
         from tbl_dept
