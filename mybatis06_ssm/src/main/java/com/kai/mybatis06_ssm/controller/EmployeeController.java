@@ -2,7 +2,6 @@ package com.kai.mybatis06_ssm.controller;
 
 import com.kai.mybatis06_ssm.bean.Employee;
 import com.kai.mybatis06_ssm.service.EmployeeService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

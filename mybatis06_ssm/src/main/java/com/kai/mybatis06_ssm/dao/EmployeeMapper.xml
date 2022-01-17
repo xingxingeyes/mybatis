@@ -11,5 +11,10 @@
         where id = #{id}
     </select>
 
+    <select id="getEmps" resultType="com.kai.mybatis06_ssm.bean.Employee">
+        select *
+        from tbl_employee
+    </select>
+
 
 </mapper>

@@ -16,7 +16,7 @@ import java.util.List;
 public class EmployeeService {
 
     @Autowired
-    private EmployeeMapper employeeMapper;
+     EmployeeMapper employeeMapper;
 
     public List<Employee> getEmps() {
         return employeeMapper.getEmps();

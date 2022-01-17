@@ -1,6 +1,5 @@
 package com.kai.mybatis06_ssm.bean;
 
-import org.apache.ibatis.type.Alias;
 
 import java.io.Serializable;
 
