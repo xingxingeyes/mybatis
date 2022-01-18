@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+    <typeHandlers>
+        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="com.kai.mybatis.bean.EmpStatus"></typeHandler>-->
+        <!--1、配置我们自定义的TypeHandler -->
+        <typeHandler handler="com.kai.mybatis.typehandler.MyEnumStatusTypeHandler"
+                     javaType="com.kai.mybatis.bean.EmpStatus"></typeHandler>
+        <!-- 2、也可以在处理某个字段的时候告诉MyBatis用什么类型处理器
+                保存：#{empStatus,typeHandler=xxx}
+                查询：
+                      <resultMap id="MyEmp" type="com.kai.mybatis.bean.Employee">
+                            <id column="id" property="id"/>
+                            <result column="empStatus" property="empStatus" typeHandler=""/>
+                      </resultMap>
+                注意：如果在参数位置修改TypeHandler，应该保证保存数据用的TypeHandler是一样的。
+           -->
+    </typeHandlers>
+
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <!-- 将我们写好的sql映射文件(EmployeeMapper.xml)一定要注册到全局配置文件(mybatis-config.xml)中   -->
+    <mappers>
+        <mapper resource="EmployeeMapper.xml"/>
+    </mappers>
+</configuration>
